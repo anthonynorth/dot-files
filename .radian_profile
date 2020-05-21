@@ -1,0 +1,4 @@
+options(
+  radian.tab_size = 2,
+  radian.complete_while_typing = FALSE,
+  radian.suppress_reticulate_message = TRUE)
