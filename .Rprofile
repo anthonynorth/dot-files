@@ -1,4 +1,8 @@
+# repos
 options(repos = structure(c(CRAN = "https://cran.rstudio.com")))
+if (.Platform$OS.type == "unix") {
+  options(repos = c(REPO_NAME = "https://packagemanager.rstudio.com/all/__linux__/bionic/latest"))
+}
 
 # language server
 options(languageserver.formatting_style = function(options) {
