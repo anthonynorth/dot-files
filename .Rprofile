@@ -5,7 +5,23 @@ if (.Platform$OS.type == "unix") {
 }
 
 # vscode-R
-options(vsc.viewer = FALSE)
+options(vsc.viewer = FALSE, vsc.browser = FALSE)
 
 # tinytex
 options(tinytex.engine_args = "-shell-escape")
+
+# httpgd
+if (interactive() && "httpgd" %in% .packages(all.available = TRUE)) {
+  if (Sys.getenv("TERM_PROGRAM") == "vscode") {
+    options(vsc.plot = FALSE)
+    options(device = function(...) {
+      httpgd::httpgd(silent = TRUE)
+      .vsc.browser(httpgd::httpgdURL(), viewer = "Beside")
+    })
+  } else {
+    options(device = function(...) {
+      httpgd::httpgd(silent = TRUE)
+      browseURL(httpgd::httpgdURL())
+    })
+  }
+}
