@@ -1,14 +1,19 @@
 # repos
 options(repos = structure(c(CRAN = "https://cran.rstudio.com")))
 if (.Platform$OS.type == "unix") {
-  options(repos = c(REPO_NAME = "https://packagemanager.rstudio.com/all/__linux__/bionic/latest"))
+  options(repos = c(REPO_NAME = "https://packagemanager.rstudio.com/all/__linux__/focal/latest"))
 }
 
-# vscode-R
-options(vsc.viewer = FALSE, vsc.browser = FALSE)
+# tidyverse
+options(tidyverse.quiet = TRUE)
 
 # tinytex
 options(tinytex.engine_args = "-shell-escape")
+
+# vscode-R
+if (interactive() && Sys.getenv("TERM_PROGRAM") == "vscode") {
+  options(vsc.viewer = FALSE, vsc.browser = FALSE)
+}
 
 # httpgd
 if (interactive() && "httpgd" %in% .packages(all.available = TRUE)) {
