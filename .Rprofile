@@ -4,8 +4,8 @@ if (.Platform$OS.type == "unix") {
   options(repos = c(REPO_NAME = "https://packagemanager.rstudio.com/all/__linux__/focal/latest"))
 }
 
-# tidyverse
-options(tidyverse.quiet = TRUE)
+# tidyverse & tidymodels
+options(tidyverse.quiet = TRUE, tidymodels.quiet = TRUE)
 
 # tinytex
 options(tinytex.engine_args = "-shell-escape")
