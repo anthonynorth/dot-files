@@ -13,6 +13,11 @@ options(tinytex.engine_args = "-shell-escape")
 # vscode-R
 if (interactive() && Sys.getenv("TERM_PROGRAM") == "vscode") {
   options(vsc.viewer = FALSE, vsc.browser = FALSE)
+  options(
+    languageserver.did_change.run_lintr = FALSE,
+    languageserver.did_change.parse = FALSE,
+    languageserver.lint_cache = TRUE
+  )
 }
 
 # httpgd
