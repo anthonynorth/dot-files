@@ -20,6 +20,17 @@ if (interactive() && Sys.getenv("TERM_PROGRAM") == "vscode") {
   )
 }
 
+# paint
+options(
+  paint_mask_print = TRUE,
+  paint_remind_mask_print = FALSE,
+  paint_max_width = 200
+)
+
+if ("paint" %in% .packages(all.available = TRUE)) {
+  paint::mask_print()
+}
+
 # httpgd
 if (interactive() && "httpgd" %in% .packages(all.available = TRUE)) {
   if (Sys.getenv("TERM_PROGRAM") == "vscode") {
