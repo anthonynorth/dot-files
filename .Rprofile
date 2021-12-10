@@ -46,3 +46,23 @@ if (interactive() && "httpgd" %in% .packages(all.available = TRUE)) {
     })
   }
 }
+
+# serve htmlwidgets with webserver
+# credit: @milesmcbain
+if (interactive() && all(c("servr", "withr") %in% .packages(all.available = TRUE))) {
+  cloud_view <- function(obj) {
+    withr::with_options(
+      list(viewer = function(url, ...) {
+        get_url_dir <- function(url) gsub("file://|/index.html", "", url)
+        server <- servr::httd(
+          dir = get_url_dir(url),
+          verbose = TRUE,
+          browser = FALSE
+        )
+
+        .vsc.browser(server$url, ...)
+      }),
+      print(obj)
+    )
+  }
+}
