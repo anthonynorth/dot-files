@@ -1,7 +1,7 @@
 # repos
 options(repos = structure(c(CRAN = "https://cran.rstudio.com")))
 if (.Platform$OS.type == "unix") {
-  options(repos = c(REPO_NAME = "https://packagemanager.rstudio.com/all/__linux__/focal/latest"))
+  options(repos = c(REPO_NAME = "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"))
 }
 
 # tidyverse & tidymodels
