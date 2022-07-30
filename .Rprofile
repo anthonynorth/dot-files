@@ -1,7 +1,7 @@
 # repos
 options(repos = structure(c(CRAN = "https://cran.rstudio.com")))
 if (.Platform$OS.type == "unix") {
-  options(repos = c(REPO_NAME = "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"))
+  options(repos = c(REPO_NAME = "https://packagemanager.rstudio.com/cran/__linux__/jammy/latest"))
   options(HTTPUserAgent = sprintf("R/%s R (%s)", getRversion(), paste(getRversion(), R.version["platform"], R.version["arch"], R.version["os"])))
 }
 
