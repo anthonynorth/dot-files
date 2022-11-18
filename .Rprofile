@@ -32,22 +32,6 @@ if ("paint" %in% .packages(all.available = TRUE)) {
   paint::mask_print()
 }
 
-# httpgd
-if (interactive() && "httpgd" %in% .packages(all.available = TRUE)) {
-  if (Sys.getenv("TERM_PROGRAM") == "vscode") {
-    options(vsc.plot = FALSE)
-    options(device = function(...) {
-      httpgd::httpgd(silent = TRUE)
-      .vsc.browser(httpgd::httpgdURL(), viewer = "Beside")
-    })
-  } else {
-    options(device = function(...) {
-      httpgd::httpgd(silent = TRUE)
-      browseURL(httpgd::httpgdURL())
-    })
-  }
-}
-
 # serve htmlwidgets with webserver
 # credit: @milesmcbain
 if (interactive() && all(c("servr", "withr") %in% .packages(all.available = TRUE))) {
