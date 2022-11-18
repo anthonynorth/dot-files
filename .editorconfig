@@ -12,8 +12,6 @@ indent_size = 2
 [*.{css,html,json,yaml}]
 indent_size = 2
 
-[*.{R,Rmd}]
+[*.{R,Rmd,qmd}]
 indent_size = 2
-
-[*.{md,Rmd}]
 trim_trailing_whitespace = false
