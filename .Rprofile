@@ -14,11 +14,8 @@ options(tinytex.engine_args = "-shell-escape")
 # vscode-R
 if (interactive() && Sys.getenv("TERM_PROGRAM") == "vscode") {
   options(vsc.viewer = FALSE, vsc.browser = FALSE)
-  options(
-    languageserver.did_change.run_lintr = FALSE,
-    languageserver.did_change.parse = FALSE,
-    languageserver.lint_cache = TRUE
-  )
+  options(languageserver.lint_cache = TRUE)
+  Sys.setenv(R_LANGSVR_POOL_SIZE = 1)
 }
 
 # paint
