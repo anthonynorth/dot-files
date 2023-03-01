@@ -29,22 +29,9 @@ if ("paint" %in% .packages(all.available = TRUE)) {
   paint::mask_print()
 }
 
-# serve htmlwidgets with webserver
-# credit: @milesmcbain
-if (interactive() && all(c("servr", "withr") %in% .packages(all.available = TRUE))) {
-  cloud_view <- function(obj) {
-    withr::with_options(
-      list(viewer = function(url, ...) {
-        get_url_dir <- function(url) gsub("file://|/index.html", "", url)
-        server <- servr::httd(
-          dir = get_url_dir(url),
-          verbose = TRUE,
-          browser = FALSE
-        )
-
-        .vsc.browser(server$url, ...)
-      }),
-      print(obj)
-    )
-  }
-}
+# serve htmlwidgets with servr
+local({
+  has_cloudview <- "cloudview" %in% .packages(all.available = TRUE)
+  is_ssh <- Sys.getenv("SSH_CONNECTION") != ""
+  if (interactive() && is_ssh && has_cloudview) cloudview::enable_cloudview()
+})
