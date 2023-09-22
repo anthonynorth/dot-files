@@ -1,7 +1,7 @@
 # repos
 options(repos = c(CRAN = "https://packagemanager.posit.co/cran/latest"))
 # jammy x64: use rspm binaries
-if (R.version["os"] == "linux-gnu" & R.version["arch"] == "x86_64" & grepl("22.04.*Ubuntu", Sys.info()["version"])) {
+if (R.version["os"] == "linux-gnu" && R.version["arch"] == "x86_64" && grepl("22.04.*Ubuntu", Sys.info()["version"])) {
   options(repos = c(CRAN = "https://packagemanager.posit.co/cran/__linux__/jammy/latest"))
   options(HTTPUserAgent = sprintf("R/%s R (%s)", getRversion(), paste(getRversion(), R.version["platform"], R.version["arch"], R.version["os"])))
 }
