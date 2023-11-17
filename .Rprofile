@@ -29,14 +29,11 @@ if ("paint" %in% .packages(all.available = TRUE)) {
   paint::mask_print()
 
   # HACK: paint wk_vctr & wk_rcrd
-  paint_ns <- asNamespace("paint")
-  registerS3method("paint_col", "wk_vctr", "paint_col.vctrs_vctr", paint_ns)
-  registerS3method("paint_col", "wk_rcrd", "paint_col.vctrs_vctr", paint_ns)
+  registerS3method("paint_col", "wk_vctr", "paint_col.vctrs_vctr", asNamespace("paint"))
+  registerS3method("paint_col", "wk_rcrd", "paint_col.vctrs_vctr", asNamespace("paint"))
 }
 
 # serve htmlwidgets with servr
-local({
-  has_cloudview <- "cloudview" %in% .packages(all.available = TRUE)
-  is_ssh <- Sys.getenv("SSH_CONNECTION") != ""
-  if (interactive() && is_ssh && has_cloudview) cloudview::enable_cloudview()
-})
+if (interactive() && Sys.getenv("SSH_CONNECTION") != "" && "cloudview" %in% .packages(all.available = TRUE)) {
+  cloudview::enable_cloudview()
+}
