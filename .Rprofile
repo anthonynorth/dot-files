@@ -20,14 +20,18 @@ if (interactive() && Sys.getenv("TERM_PROGRAM") == "vscode") {
 }
 
 # paint
-options(
-  paint_mask_print = TRUE,
-  paint_remind_mask_print = FALSE,
-  paint_max_width = 200
-)
-
 if ("paint" %in% .packages(all.available = TRUE)) {
+  options(
+    paint_mask_print = TRUE,
+    paint_remind_mask_print = FALSE,
+    paint_max_width = 200
+  )
   paint::mask_print()
+
+  # HACK: paint wk_vctr & wk_rcrd
+  paint_ns <- asNamespace("paint")
+  registerS3method("paint_col", "wk_vctr", "paint_col.vctrs_vctr", paint_ns)
+  registerS3method("paint_col", "wk_rcrd", "paint_col.vctrs_vctr", paint_ns)
 }
 
 # serve htmlwidgets with servr
